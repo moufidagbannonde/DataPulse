@@ -10,3 +10,9 @@ Elle sert à marquer une classe comme étant un repository , c'est-à-dire un en
 
 Mais non !
 Quant on implémente une interface comme `JpaRepository` , Spring détecte automatiquement notre repository !
+
+## `@PathVariable` vs `@RequestBody` vs `@RequestParam`
+
+1. `@PathVariable` : On l'utilise pour l'extraire une partie variable dans notre chemin URL (path);
+2. `@RequestBody`: On l'utilise quant on reçoit des données via post
+3. `@RequestParam`: On l'utilise quant on a des paramètres dans l'URL sous la forme `github.com/search?param=value`
