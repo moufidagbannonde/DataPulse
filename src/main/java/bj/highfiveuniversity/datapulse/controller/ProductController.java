@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -37,12 +38,12 @@ public class ProductController {
     }
     // méthode pour créer un produit
     @PostMapping
-    public Product createProduct(Product product) {
+    public Product createProduct(@RequestBody Product product) {
         return productRepository.save(product);
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(Long id, Product productDetail) {
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product productDetail) {
         // identifier d'abord le produit à modifier
         Product product = productRepository.findById(id).orElseThrow();
         // remplacer les champs du produit par les nouvelles données que l'utilisateur veut
@@ -52,14 +53,14 @@ public class ProductController {
         return productRepository.save(product);
     }
     @DeleteMapping("/{id}")
-    public void deleteProduct(Long id) {
+    public void deleteProduct(@PathVariable Long id) {
         // récupérer le produit à supprimer au travers de son id
         Product deleteproduct = productRepository.findById(id).orElseThrow();
         // supprimer le produit dans la base de données
         productRepository.delete(deleteproduct);
     }
 
-    // tout supprimer 
+    // tout supprimer
     public void deleteAllProducts(){
         productRepository.deleteAll();
     }
